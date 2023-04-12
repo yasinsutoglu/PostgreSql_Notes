@@ -1,0 +1,31 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 -- 1. Count the number of actors born after the 1st of January 1970. \
+\
+SELECT COUNT(*) FROM actors \
+WHERE date_of_birth > '1970-01-01';\
+\
+-- 2. What was the highest and lowest domestic takings for a movie?\
+\
+SELECT MAX(domestic_takings) FROM movie_revenues;\
+SELECT MIN(domestic_takings) FROM movie_revenues;\
+\
+-- 3. What is the sum total movie length for movies rated 15?\
+\
+SELECT SUM(movie_length) FROM movies\
+WHERE age_certificate = '15';\
+\
+-- 4. How many Japanese directors are in the directors table?\
+\
+SELECT COUNT(*) FROM directors\
+WHERE nationality = 'Japanese';\
+\
+-- 5. What is the average movie length for Chinese movies?\
+\
+SELECT AVG(movie_length) FROM movies \
+WHERE movie_lang = 'Chinese';}

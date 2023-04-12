@@ -1,0 +1,21 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 -- Solution 2 Code:\
+\
+-- 1. Use a left join to select the first and last names of all British directors and \
+-- the names and age certificates of the movies that they directed.\
+\
+SELECT d.first_name, d.last_name, mo.movie_name, mo.age_certificate FROM directors d \
+LEFT JOIN movies mo ON d.director_id = mo.director_id \
+WHERE d.nationality = 'British';\
+\
+-- 2. Count the number of movies that each director has directed.\
+\
+SELECT d.first_name, d.last_name, COUNT(mo.movie_id) FROM directors d\
+LEFT JOIN movies mo ON d.director_id = mo.director_id \
+GROUP BY d.first_name, d.last_name;}
