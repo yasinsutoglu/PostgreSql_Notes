@@ -1232,3 +1232,105 @@ WHERE mo1.movie_length =
 	(SELECT MAX(movie_length) FROM movies mo2
 	WHERE mo2.movie_lang = mo1.movie_lang);
 ---------------------------------------------------------------------------------------------------
+-- STRING FUNCTIONS
+-- 1.Upper and Lower Functions
+/*
+SELECT UPPER('string');
+SELECT LOWER('string');
+SELECT UPPER(column_name) FROM table_name;
+SELECT LOWER(column_name) FROM table_name;
+*/
+
+SELECT UPPER('stop shouting');
+
+SELECT first_name , UPPER(last_name) as last_name FROM actors;
+
+SELECT LOWER('StoP SHouTING');
+
+SELECT LOWER(movie_name) FROM movies;
+
+-- 2.Initcap Functions
+/*
+SELECT INITCAP('example string');
+SELECT INITCAP(column_name) FROM table_name;
+*/
+
+SELECT INITCAP('eXamPLE sTrING'); -- Example String
+
+SELECT INITCAP(movie_name) FROM movies;
+
+-- 3.Left/Right String Functions
+/*
+SELECT LEFT('string',int);
+SELECT RIGHT('string',int);
+SELECT LEFT(column_name,int) FROM table_name;
+SELECT RIGHT(column_name,int) FROM table_name;
+*/
+
+SELECT LEFT('Yasin',3);
+SELECT LEFT('Yasin',-4);
+
+SELECT LEFT(movie_name, 5) FROM movies;
+SELECT RIGHT(movie_name, 5) FROM movies;
+
+-- 4.Reverse String Functions
+/*
+SELECT REVERSE('example string');
+SELECT REVERSE(column_name) FROM table_name;
+*/
+
+SELECT movie_name ,REVERSE(movie_name) FROM movies;
+
+SELECT CONCAT_WS('.',LEFT(first_name,1),LEFT(last_name,1)) AS initials FROM directors;
+
+-- 5.Substring Functions
+/*
+SELECT SUBSTRING('example string', from, count);
+SELECT SUBSTRING(column_name,from,count) FROM table_name;
+*/
+
+SELECT SUBSTRING('long string', 2, 6);
+
+SELECT SUBSTRING(movie_name,2,5) FROM movies;
+
+
+-- 6.Replace Functions
+/*
+SELECT REPLACE('source_string', 'old_string', 'new_string');
+SELECT REPLACE(column_name,'old_string', 'new_string') FROM table_name;
+
+UPDATE table_name
+SET column_name = REPLACE(column_name,'old_string', 'new_string')
+WHERE colum_name = 'value';
+*/
+
+SELECT REPLACE('a cat plays with another cat', 'cat', 'dog');
+SELECT first_name, last_name, REPLACE(gender, 'M', 'Male') FROM actors;
+
+UPDATE directors
+SET nationality = REPLACE(nationality, 'Brit', 'Engl')
+WHERE nationality = 'British';
+
+SELECT * FROM directors;
+
+-- 7.Split_Part Functions
+/*
+SELECT SPLIT_PART('string', 'delimeter', field_number);
+SELECT SPLIT_PART(column_name,'delimeter', field_number) FROM table_name;
+*/
+
+SELECT SPLIT_PART('first_name.last_name@gmail.com', '@', 1);
+SELECT SPLIT_PART('first_name.last_name@gmail.com', '.', 2);
+
+SELECT SPLIT_PART(movie_name,' ', 1) AS first_word ,  SPLIT_PART(movie_name,' ', 2) FROM movies;
+
+-- 8.Using Casting to apply String Functions to Non_String Data Types
+-- :: => cast operator
+/*
+SELECT column_name::DATATYPE FROM table_name;
+*/
+
+SELECT date_of_birth::TEXT FROM directors;
+
+SELECT SPLIT_PART(date_of_birth::TEXT, '-', 1) FROM directors;
+SELECT SPLIT_PART(date_of_birth::VARCHAR(30), '-', 1) FROM directors;
